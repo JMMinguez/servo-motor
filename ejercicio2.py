@@ -2,11 +2,16 @@
 #Ejercicio: Práctica P9 --> Manejo de servocon retroalimentación posicional
 #Autores: Jorge Martín y Rebeca Sánchez
 #Fecha límite de entrega: 16/1/23
-#Objetivo: simular marchas de un coche
+#Objetivo: encontrar la ecuación lineal que asocie velocidad a un ciclo
 #------------------------------
+
 #!/usr/bin/env python3
 
 import sys, tty, termios, time, pigpio
+
+MAX_SPEED = 1720
+MIN_SPEED = 1520
+velocidad = 0
 
 servoPin = 14 # numeracion en modo BCM (que es el usado por defecto por pigpio)
 
@@ -44,44 +49,21 @@ def parar ():
 
 #==========================================================================
 
-print ("Dispositivo listo. Esperando órdenes (w = adelante, s = atrás, x = parar)...")
+print ("Dispositivo listo. Elija un númerodel 0 al 9:")
 
-marcha1 = 1460 #cambio setido --> 1540
-marcha2 = 1440 #cambio setido --> 1560
-marcha3 = 1400 #cambio setido --> 1600
-marcha4 = 1360 #cambio setido --> 1640
-marcha5 = 1320 #cambio setido --> 1680
-marcha6 = 1280 #cambio setido --> 1720
-cambio_sentido = 1580
 while True:
   char = leerOrden()
-
-  if char == "1":
-    print("Primera marcha")
-    miServo.set_servo_pulsewidth(servoPin, marcha1)
-
-  elif char == "2":
-    print("Segunda marcha")
-    miServo.set_servo_pulsewidth(servoPin, marcha2)
-  elif char == "3":
-    print("Tercera marcha")
-    miServo.set_servo_pulsewidth(servoPin, marcha3)
-  elif char == "4":
-    print("Cuarta marcha")
-    miServo.set_servo_pulsewidth(servoPin, marcha4)
-  elif char == "5":
-    print("Quinta marcha")
-    miServo.set_servo_pulsewidth(servoPin, marcha5)
-  elif char == "6":
-    print("Sexta marcha")
-    miServo.set_servo_pulsewidth(servoPin, marcha6)
-    
-  elif char == "r":
-    print("Cambio de sentido")
-    miServo.set_servo_pulsewidth(servoPin, cambio_sentido)
-
-  elif char == "x":
+  if char == "0":
     print("Parando motor")
     parar ()
     print("Motor parado")
     break
+  velocidad = (((ord(char)-48)*(MAX_SPEED-MIN_SPEED))/9)+MIN_SPEED #calculo velocidad
+  print(velocidad)
+  miServo.set_servo_pulsewidth(servoPin, velocidad)
+  
+#CASOS DE USO
+#si se quiere cambiar el sentido basta con cambiar las velocidades máxima y mínima
+#si se mete un carácter diferente a los que se pide muestra un error
+
+
