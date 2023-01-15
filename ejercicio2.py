@@ -74,7 +74,7 @@ while True:
   else: 
     #convertir numero de código ascii
     velocidad = (((ord(char)-48)*((MAX_SPEED-MIN_SPEED)))/9)+MIN_SPEED #calculo velocidad
-    print(round(velocidad))
+    print(round(velocidad)) #Redondear para mostrar en pantalla
     miServo.set_servo_pulsewidth(servoPin, velocidad)
   
 #CASOS DE USO
