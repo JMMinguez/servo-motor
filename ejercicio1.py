@@ -44,7 +44,7 @@ def parar ():
 
 #==========================================================================
 
-print ("Dispositivo listo. Esperando órdenes (w = adelante, s = atrás, x = parar)...")
+print ("Dispositivo listo. Elija marcha (1-6), retroceso (r) o parar (x)")
 
 marcha1 = 1460 #cambio setido --> 1540
 marcha2 = 1440 #cambio setido --> 1560

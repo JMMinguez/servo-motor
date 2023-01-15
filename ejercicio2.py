@@ -12,6 +12,7 @@ import sys, tty, termios, time, pigpio
 MAX_SPEED = 1720
 MIN_SPEED = 1520
 velocidad = 0
+negativo = 1
 
 servoPin = 14 # numeracion en modo BCM (que es el usado por defecto por pigpio)
 
@@ -49,7 +50,7 @@ def parar ():
 
 #==========================================================================
 
-print ("Dispositivo listo. Elija un númerodel 0 al 9:")
+print ("Dispositivo listo. Elija un número del 0 al 9, sentido hortario (h) o antihorario (a):")
 
 while True:
   char = leerOrden()
@@ -58,12 +59,25 @@ while True:
     parar ()
     print("Motor parado")
     break
-  velocidad = (((ord(char)-48)*(MAX_SPEED-MIN_SPEED))/9)+MIN_SPEED #calculo velocidad
-  print(velocidad)
-  miServo.set_servo_pulsewidth(servoPin, velocidad)
+    
+  elif char == "a":
+    print ("Sentido antihorario")
+    MAX_SPEED = 1720
+    MIN_SPEED = 1530
+
+  #Cambiar maximo ymínimo
+  elif char == "h":
+    print ("Sentido horario")
+    MAX_SPEED = 1460
+    MIN_SPEED = 1280
+  
+  else: 
+    #convertir numero de código ascii
+    velocidad = (((ord(char)-48)*((MAX_SPEED-MIN_SPEED)))/9)+MIN_SPEED #calculo velocidad
+    print(round(velocidad))
+    miServo.set_servo_pulsewidth(servoPin, velocidad)
   
 #CASOS DE USO
-#si se quiere cambiar el sentido basta con cambiar las velocidades máxima y mínima
-#si se mete un carácter diferente a los que se pide muestra un error
+#si se mete un carácter diferente a los que se pide muestra un error, se introduce en código Ascii
 
 
