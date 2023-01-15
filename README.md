@@ -21,7 +21,7 @@ En el primer ejercicio nos pide simular las mmarchas de un coche con el motor. H
 Acontinuación, os adjuntamos una foto de loq euse vería en pantalla y un vídeo del funcionamiento del motor. Si no puedes ver el vídeo, por favor, pinche [aquí](https://github.com/rsanchez2021/Image/blob/main/ejercicio1_sensores_p9.mp4).
 
 
-![Pantalla código]()
+![Pantalla código](https://github.com/rsanchez2021/Image/blob/main/ejercicio1_pantalla.jpeg)
 
 https://user-images.githubusercontent.com/113595025/212560070-5fae648a-d7f8-4431-97aa-5ecbf52c4ba7.mp4
 
